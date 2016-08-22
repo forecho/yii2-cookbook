@@ -232,3 +232,44 @@ return [
     'hello' => 'world!',
 ];
 ```
+
+Choosing format based on content type requested
+-----------------------------------------------
+
+You can use the `ContentNegotiator` controller filter in order to choose format based on what is requested. In order
+to do so you need to implement `behaviors` method in controller:
+
+```
+public function behaviors()
+{
+    return [
+        // ...
+        'contentNegotiator' => [
+            'class' => \yii\filters\ContentNegotiator::className(),
+            'only' => ['index', 'view'],
+            'formatParam' => '_format',
+            'formats' => [
+                'application/json' => \yii\web\Response::FORMAT_JSON,
+                'application/xml' => \yii\web\Response::FORMAT_XML,
+            ],
+        ],
+    ];
+}
+
+public function actionIndex()
+{
+    $users = \app\models\User::find()->all();
+    return $users;
+}
+
+public function actionView($id)
+{
+    $user = \app\models\User::findOne($id);
+    return $user;
+}
+```
+
+That's it. Now you can test it via the following URLs:
+
+`/index.php?r=user/index&_format=xml`
+`/index.php?r=user/index&_format=json`

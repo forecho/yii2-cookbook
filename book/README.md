@@ -30,6 +30,17 @@ Web essentials
 - AJAX???
 - [Handling incoming third party POST requests](incoming-post.md)
 
+SEO essentials
+--------------
+
+- [Enable pretty URLs](enable-pretty-urls.md)
+- [Pagination with pretty URLs](pagination-pretty-urls.md)
+- [Adding SEO tags](adding-seo-tags.md)
+- [Canonical URLs](canonical-urls.md)
+- [Using redirects](using-redirects.md)
+- [Using slugs](using-slugs.md)
+- [Handling trailing slash in URLs](handling-trailing-slash-in-urls.md)
+
 Forms
 -----
 
@@ -40,10 +51,10 @@ Security
 --------
 
 - A safe approach to passwords explained
-- SQL injection
-- XSS
-- RBAC
-- CSRF
+- [SQL injection](sql-injection.md)
+- [XSS](xss.md)
+- [RBAC](security-rbac.md)
+- [CSRF](csrf.md)
 
 Structuring and organizing code
 -------------------------------
@@ -57,7 +68,7 @@ Structuring and organizing code
 View
 ----
 
-- Reusing views via partials
+- [Reusing views via partials](reusing-views-via-partials.md)
 - Using blocks
 - Using decorators
 - When to use Widgets and when not to
@@ -80,7 +91,7 @@ i18n
 
 - General best practices
 - [Selecting application language](i18n-selecting-application-language.md)
-- Translating content
+- [Using IDs as translation source](i18n-using-ids-as-translation-source.md)
 
 
 Performance
@@ -91,6 +102,7 @@ Performance
 - Implementing backgroud tasks (cronjobs)
 - [Running Yii on HHVM](performance-hhvm.md)
 - [Caching](caching.md)
+- [Configuring a Yii2 Application for an Autoscaling Stack](scaling.md)
 
 External code
 -------------
@@ -103,3 +115,4 @@ Tools
 
 - Making your life easier (XDebug, debug toolbar, gii)
 - [IDE autocompletion for custom components](ide-autocompletion.md)
+- [Using custom migration template](using-custom-migration-template.md)

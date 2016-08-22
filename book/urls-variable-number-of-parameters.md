@@ -30,7 +30,11 @@ Now in `config/urls.php` add the following content:
 ```php
 <?php
 return [
-    'products/<categories:.*>' => 'product/category',
+    [
+        'pattern' => 'products/<categories:.*>',
+        'route' => 'product/category',
+        'encodeParams' => false,
+    ],
 ];
 ```
 
@@ -46,7 +50,7 @@ class ProductController extends Controller
     public function actionCategory($categories)
     {
         $params = explode('/', $categories);
-        print_r($categories);
+        print_r($params);
     }
 }
 ```

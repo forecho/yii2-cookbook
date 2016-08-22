@@ -67,6 +67,12 @@ class SportCar extends Car
 {
     const TYPE = 'sport';
 
+    public function init()
+    {
+        $this->type = self::TYPE;
+        parent::init();
+    }
+
     public static function find()
     {
         return new CarQuery(get_called_class(), ['type' => self::TYPE]);
@@ -88,6 +94,12 @@ namespace app\models;
 class HeavyCar extends Car
 {
     const TYPE = 'heavy';
+
+    public function init()
+    {
+        $this->type = self::TYPE;
+        parent::init();
+    }
 
     public static function find()
     {
@@ -115,6 +127,15 @@ public static function instantiate($row)
         default:
            return new self;
     }
+}
+```
+
+Also we need to override `tableName` method in the `Car` model in order for all models involved to use a single table:
+
+```php
+public static function tableName()
+{
+    return '{{%car%}}';
 }
 ```
 
@@ -155,3 +176,18 @@ after data is retrieved from database and is about to be used to initialize clas
 class instance and the only argument passed to the method is the row of data retrieved from the database. Exactly what we need.
 The implementation is a simple switch statement where we're checking if the `type` field matches type of the classes we suport.
 If so, an instance of the class is returned. If nothing matches, it falls back to returning a `Car` model instance. 
+
+Handling unique values
+----------------------
+
+If you have a column marked as unique, to prevent breaking the `UniqueValidator`` you need to specify the `targetClass`
+property.
+
+```php
+    public function rules()
+    {
+        return [
+            [['MyUniqueColumnName'], 'unique', 'targetClass' => '\app\models\Car'],
+        ];
+    }
+```

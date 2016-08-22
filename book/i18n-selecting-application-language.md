@@ -64,7 +64,7 @@ In order to use the component you should specify it in the application config li
 return [
     'bootstrap' => [
         [
-            'class' => app\components\LanguageSelector::className(),
+            'class' => 'app\components\LanguageSelector',
             'supportedLanguages' => ['en_US', 'ru_RU'],
         ],
     ],
@@ -100,7 +100,7 @@ language code => language name pairs.
 Form handling should be done in controller. A good place to do it is `SiteController::actionLanguage`:
 
 ```php
-$language = Yii::$app->request->post['language'];
+$language = Yii::$app->request->post('language');
 Yii::$app->language = $language;
 
 $languageCookie = new Cookie([
@@ -108,7 +108,7 @@ $languageCookie = new Cookie([
     'value' => $language,
     'expire' => time() + 60 * 60 * 24 * 30, // 30 days
 ]);
-Yii::$app->request->cookies->add($languageCookie);
+Yii::$app->response->cookies->add($languageCookie);
 ```
 
 We’re using cookie to store the language. But it could be, for example, database:
@@ -174,7 +174,7 @@ return [
     'components' => [
         'urlManager' => [
            'ruleConfig' => [
-                'class' => app\components\LanguageUrlRule::className()
+                'class' => 'app\components\LanguageUrlRule'
             ],
         ],
     ],
